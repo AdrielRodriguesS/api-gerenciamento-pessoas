@@ -15,7 +15,7 @@ public class Pessoa {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
-	private LocalDate dataNacimento;
+	private LocalDate dataNascimento;
 	
 	@OneToMany(mappedBy = "pessoa")
 	private List<Endereco> enderecos;
@@ -23,10 +23,10 @@ public class Pessoa {
 	public Pessoa() {
 	}
 
-	public Pessoa(Long id, String nome, LocalDate dataNacimento, List<Endereco> enderecos) {
+	public Pessoa(Long id, String nome, LocalDate dataNascimento, List<Endereco> enderecos) {
 		this.id = id;
 		this.nome = nome;
-		this.dataNacimento = dataNacimento;
+		this.dataNascimento = dataNascimento;
 		this.enderecos = enderecos;
 	}
 
@@ -46,12 +46,12 @@ public class Pessoa {
 		this.nome = nome;
 	}
 
-	public LocalDate getDataNacimento() {
-		return dataNacimento;
+	public LocalDate getDataNascimento() {
+		return dataNascimento;
 	}
 
-	public void setDataNacimento(LocalDate dataNacimento) {
-		this.dataNacimento = dataNacimento;
+	public void setDataNascimento(LocalDate dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 
 	public List<Endereco> getEnderecos() {

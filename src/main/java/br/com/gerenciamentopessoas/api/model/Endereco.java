@@ -17,6 +17,7 @@ public class Endereco {
 	private String cep;
 	private String numero;
 	private String cidade;
+	private boolean enderecoPrincipal;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "pessoa_id")
@@ -25,12 +26,15 @@ public class Endereco {
 	public Endereco() {
 	}
 	
-	public Endereco(Long id, String logradouro, String cep, String numero, String cidade) {
+	public Endereco(Long id, String logradouro, String cep, String numero, String cidade, boolean enderecoPrincipal,
+			Pessoa pessoa) {
 		this.id = id;
 		this.logradouro = logradouro;
 		this.cep = cep;
 		this.numero = numero;
 		this.cidade = cidade;
+		this.enderecoPrincipal = enderecoPrincipal;
+		this.pessoa = pessoa;
 	}
 
 	public Long getId() {
@@ -73,4 +77,12 @@ public class Endereco {
 		this.cidade = cidade;
 	}
 
+	public boolean isEnderecoPrincipal() {
+		return enderecoPrincipal;
+	}
+
+	public void setEnderecoPrincipal(boolean enderecoPrincipal) {
+		this.enderecoPrincipal = enderecoPrincipal;
+	}
+	
 }

@@ -3,10 +3,12 @@ package br.com.gerenciamentopessoas.api.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import br.com.gerenciamentopessoas.api.model.Pessoa;
 import br.com.gerenciamentopessoas.api.repository.PessoaRepository;
 
+@Service
 public class PessoaService {
 
 	@Autowired
@@ -24,16 +26,22 @@ public class PessoaService {
 		return pessoaRepository.findById(idPessoa).get();
 	}
 	
-	public void criarPessoa(Pessoa pessoa) {
-		
+	public Pessoa criarPessoa(Pessoa pessoa) {
+		return pessoaRepository.save(pessoa);
 	}
 	
-	public void editarPessoa(String id) {
+	public Pessoa editarPessoa(String id) {
+		
+		Long idPessoa = Long.parseLong(id);
+		Pessoa pessoa = pessoaRepository.findById(idPessoa).get();
+		return pessoaRepository.save(pessoa);
 		
 	}
 	
 	public void apagarPessoa(String id) {
 		
+		Long idPessoa = Long.parseLong(id);
+		pessoaRepository.deleteById(idPessoa);
 	}
 
 }
