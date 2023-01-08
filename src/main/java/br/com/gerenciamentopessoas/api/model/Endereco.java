@@ -1,5 +1,7 @@
 	package br.com.gerenciamentopessoas.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -19,6 +21,7 @@ public class Endereco {
 	private String cidade;
 	private boolean enderecoPrincipal;
 	
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "pessoa_id")
 	private Pessoa pessoa;
@@ -83,6 +86,14 @@ public class Endereco {
 
 	public void setEnderecoPrincipal(boolean enderecoPrincipal) {
 		this.enderecoPrincipal = enderecoPrincipal;
+	}
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
 	}
 	
 }

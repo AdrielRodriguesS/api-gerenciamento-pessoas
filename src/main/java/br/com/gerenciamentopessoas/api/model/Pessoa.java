@@ -3,6 +3,8 @@ package br.com.gerenciamentopessoas.api.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,6 +19,7 @@ public class Pessoa {
 	private String nome;
 	private LocalDate dataNascimento;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "pessoa")
 	private List<Endereco> enderecos;
 	
@@ -61,5 +64,11 @@ public class Pessoa {
 	public void setEnderecos(List<Endereco> enderecos) {
 		this.enderecos = enderecos;
 	}
+
+	@Override
+	public String toString() {
+		return "Pessoa [id=" + id + ", nome=" + nome + ", dataNascimento=" + dataNascimento + "]";
+	}
+	
 	
 }

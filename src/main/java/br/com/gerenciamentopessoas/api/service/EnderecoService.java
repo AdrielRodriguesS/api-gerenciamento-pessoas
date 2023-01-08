@@ -20,19 +20,22 @@ public class EnderecoService {
 		return enderecoRepository.findAllByIdPessoa(id);
 	}
 	
-	public Endereco buscarEnderecoPrincipal(String idPessoa, boolean isPrincipal) {
+	public Endereco buscarEnderecoPrincipal(String idPessoa) {
 		Long id = Long.parseLong(idPessoa);
-		return enderecoRepository.findEnderecoPrincipalByIdPessoa(id, isPrincipal);
+		return enderecoRepository.findEnderecoPrincipalByIdPessoa(id);
+	}
+	
+	public Endereco buscarEnderecoPorId(String idEndereco) {
+		Long id = Long.parseLong(idEndereco);
+		return enderecoRepository.findById(id).get();
 	}
 	
 	public Endereco criarEndereco(Endereco endereco) {
 		return enderecoRepository.save(endereco);
 	}
 	
-	public Endereco editarEndereco(String idEndereco){
+	public Endereco editarEndereco(Endereco endereco){
 		
-		Long id = Long.parseLong(idEndereco);
-		Endereco endereco = enderecoRepository.findById(id).get();
 		return enderecoRepository.save(endereco);
 	}
 	

@@ -12,11 +12,11 @@ import br.com.gerenciamentopessoas.api.model.Endereco;
 public interface EnderecoRepository extends JpaRepository<Endereco, Long> {
 
 	
-	@Query("SELECT end FROM Endereco end WHERE end.pessoa = :id")
+	@Query("SELECT end FROM Endereco end WHERE end.pessoa.id = :id")
 	List<Endereco> findAllByIdPessoa(Long id);
 
-	@Query("SELECT end FROM Endereco end WHERE end.pessoa = :id "
-			+ "AND enderecoPrincipal = :tipoEndereco")
-	Endereco findEnderecoPrincipalByIdPessoa(Long id, boolean tipoEndereco);	
+	@Query("SELECT end FROM Endereco end WHERE end.pessoa.id = :id "
+			+ "AND enderecoPrincipal = true")
+	Endereco findEnderecoPrincipalByIdPessoa(Long id);	
 
 }

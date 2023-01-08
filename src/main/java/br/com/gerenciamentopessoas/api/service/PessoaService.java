@@ -30,12 +30,8 @@ public class PessoaService {
 		return pessoaRepository.save(pessoa);
 	}
 	
-	public Pessoa editarPessoa(String id) {
-		
-		Long idPessoa = Long.parseLong(id);
-		Pessoa pessoa = pessoaRepository.findById(idPessoa).get();
+	public Pessoa editarPessoa(Pessoa pessoa) {		
 		return pessoaRepository.save(pessoa);
-		
 	}
 	
 	public void apagarPessoa(String id) {
