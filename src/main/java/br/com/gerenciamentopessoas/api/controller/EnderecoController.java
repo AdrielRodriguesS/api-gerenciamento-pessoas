@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gerenciamentopessoas.api.dto.EnderecoDto;
@@ -28,26 +29,28 @@ public class EnderecoController {
 	@Autowired
 	PessoaService pessoaService;
 	
-	@GetMapping("/{id}")
-	public ResponseEntity<List<Endereco>> buscarTodosEnderecosPessoa (@PathVariable String id){
-		List<Endereco> enderecos = enderecoService.buscarTodosEnderecosPorPessoa(id);
+	@GetMapping("/buscar")
+	public ResponseEntity<List<Endereco>> buscarTodosEnderecosPessoa (
+			@RequestParam (value="pessoaId", defaultValue = "") String pessoaId){
+		List<Endereco> enderecos = enderecoService.buscarTodosEnderecosPorPessoa(pessoaId);
 		return ResponseEntity.ok(enderecos);
 	}
 	
-	@GetMapping("/principal/{id}")
-	public ResponseEntity<Endereco> buscarEnderecoPrincipalPessoa (@PathVariable String id){
-		Endereco endereco = enderecoService.buscarEnderecoPrincipal(id);
+	@GetMapping("/buscar/principal")
+	public ResponseEntity<Endereco> buscarEnderecoPrincipalPessoa (
+			@RequestParam (value="pessoaId", defaultValue = "") String pessoaId){
+		Endereco endereco = enderecoService.buscarEnderecoPrincipal(pessoaId);
 		return ResponseEntity.ok(endereco);
 	}
 	
-	@PostMapping
+	@PostMapping("/criar")
 	public ResponseEntity<Endereco> criarEndereco(@RequestBody EnderecoDto enderecoDto){
 		Endereco endereco = enderecoDto.converter(pessoaService, enderecoDto.getPessoaId().toString());
 		enderecoService.criarEndereco(endereco);
 		return ResponseEntity.ok(endereco);
 	}
 	
-	@PutMapping("/{id}")
+	@PutMapping("/atualizar/{id}")
 	public ResponseEntity<Endereco> atualizarEndereco(@RequestBody EnderecoDto enderecoDto,
 			@PathVariable String id){
 		
@@ -58,7 +61,7 @@ public class EnderecoController {
 		return ResponseEntity.ok(endereco);
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/apagar/{id}")
 	public ResponseEntity<Endereco> apagarEndereco(@PathVariable String id){
 		Endereco endereco = enderecoService.buscarEnderecoPorId(id);
 		enderecoService.apagarEndereco(endereco.getId().toString());

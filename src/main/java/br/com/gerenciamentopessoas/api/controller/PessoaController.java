@@ -24,21 +24,21 @@ public class PessoaController {
 	@Autowired
 	PessoaService pessoaService;
 	
-	@GetMapping
+	@GetMapping("/buscarTodas")
 	public ResponseEntity<List<Pessoa>> BuscarTodasPessoas(){
 		
 		List<Pessoa> pessoas = pessoaService.buscaTodasPessoas();
 		return ResponseEntity.ok(pessoas);
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/buscar/{id}")
 	public ResponseEntity<Pessoa> BuscarPessoaPorId(@PathVariable String id){
 		
 		Pessoa pessoa = pessoaService.buscaPessoaPorId(id);
 		return ResponseEntity.ok(pessoa);
 	}
 	
-	@PostMapping
+	@PostMapping("criar")
 	public ResponseEntity<Pessoa> criarPessoa(@RequestBody PessoaDto pessoaDto){
 		
 		Pessoa pessoa = pessoaDto.converter();
@@ -46,7 +46,7 @@ public class PessoaController {
 		return ResponseEntity.ok(pessoa);
 	}
 	
-	@PutMapping("/{id}")
+	@PutMapping("/atualizar/{id}")
 	public ResponseEntity<Pessoa> atualizarPessoa(@RequestBody PessoaDto pessoaDto, @PathVariable String id){
 		
 		Pessoa pessoa = pessoaService.buscaPessoaPorId(id);		
@@ -57,7 +57,7 @@ public class PessoaController {
 		return ResponseEntity.ok(pessoa);
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/apagar/{id}")
 	public ResponseEntity<Pessoa> apagarPessoa(@PathVariable String id){
 		Pessoa pessoa = pessoaService.buscaPessoaPorId(id);
 		pessoaService.apagarPessoa(pessoa.getId().toString());
