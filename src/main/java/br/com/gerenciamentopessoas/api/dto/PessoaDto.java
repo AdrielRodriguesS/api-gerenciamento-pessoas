@@ -3,11 +3,16 @@ package br.com.gerenciamentopessoas.api.dto;
 import java.time.LocalDate;
 
 import br.com.gerenciamentopessoas.api.model.Pessoa;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
 
 public class PessoaDto {
 	
 	private Long id;
+	@NotNull @NotBlank
 	private String nome;
+	@NotNull @Past
 	private LocalDate dataNascimento;
 		
 	public Pessoa converter() {

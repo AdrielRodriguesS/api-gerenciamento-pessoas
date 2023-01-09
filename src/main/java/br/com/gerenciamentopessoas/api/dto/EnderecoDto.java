@@ -3,14 +3,22 @@ package br.com.gerenciamentopessoas.api.dto;
 import br.com.gerenciamentopessoas.api.model.Endereco;
 import br.com.gerenciamentopessoas.api.model.Pessoa;
 import br.com.gerenciamentopessoas.api.service.PessoaService;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 public class EnderecoDto {
 	
 	private Long id;
+	@NotNull @NotBlank
 	private String logradouro;
+	@NotNull @NotBlank
 	private String cep;
+	@NotNull @NotBlank @Positive
 	private String numero;
+	@NotNull @NotBlank
 	private String cidade;
+	@NotNull
 	private boolean enderecoPrincipal;
 	private String pessoaId;
 	

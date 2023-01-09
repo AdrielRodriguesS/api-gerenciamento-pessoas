@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.gerenciamentopessoas.api.dto.PessoaDto;
 import br.com.gerenciamentopessoas.api.model.Pessoa;
 import br.com.gerenciamentopessoas.api.service.PessoaService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/pessoas")
@@ -36,10 +37,11 @@ public class PessoaController {
 		
 		Pessoa pessoa = pessoaService.buscaPessoaPorId(id);
 		return ResponseEntity.ok(pessoa);
+		
 	}
 	
 	@PostMapping("criar")
-	public ResponseEntity<Pessoa> criarPessoa(@RequestBody PessoaDto pessoaDto){
+	public ResponseEntity<Pessoa> criarPessoa(@Valid @RequestBody PessoaDto pessoaDto){
 		
 		Pessoa pessoa = pessoaDto.converter();
 		pessoaService.criarPessoa(pessoa);
@@ -47,7 +49,7 @@ public class PessoaController {
 	}
 	
 	@PutMapping("/atualizar/{id}")
-	public ResponseEntity<Pessoa> atualizarPessoa(@RequestBody PessoaDto pessoaDto, @PathVariable String id){
+	public ResponseEntity<Pessoa> atualizarPessoa(@Valid @RequestBody PessoaDto pessoaDto, @PathVariable String id){
 		
 		Pessoa pessoa = pessoaService.buscaPessoaPorId(id);		
 		pessoa = pessoaDto.converter();
