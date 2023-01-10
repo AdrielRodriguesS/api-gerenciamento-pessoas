@@ -1,4 +1,4 @@
-	package br.com.gerenciamentopessoas.api.model;
+package br.com.gerenciamentopessoas.api.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -94,6 +94,12 @@ public class Endereco {
 
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
+	}
+
+	@Override
+	public String toString() {
+		return "Endereco [id=" + id + ", logradouro=" + logradouro + ", cep=" + cep + ", numero=" + numero + ", cidade="
+				+ cidade + ", enderecoPrincipal=" + enderecoPrincipal + ", pessoa=" + pessoa + "]";
 	}
 	
 }
