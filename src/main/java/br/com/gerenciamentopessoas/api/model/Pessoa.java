@@ -27,11 +27,10 @@ public class Pessoa {
 	public Pessoa() {
 	}
 
-	public Pessoa(Long id, String nome, LocalDate dataNascimento, List<Endereco> enderecos) {
+	public Pessoa(Long id, String nome, LocalDate dataNascimento) {
 		this.id = id;
 		this.nome = nome;
 		this.dataNascimento = dataNascimento;
-		this.enderecos = enderecos;
 	}
 
 	public Long getId() {
